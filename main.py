@@ -8,7 +8,7 @@ app = FastAPI()
 @app.get("/")
 async def root():
     return {
-        "Let's do something fun": "Please type in your name and predict what you will do after graduating from MIDS"
+        "Message": "Please type in your name and predict what you will do after graduating from MIDS"
     }
 
 
