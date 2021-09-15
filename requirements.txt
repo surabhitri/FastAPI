@@ -5,3 +5,4 @@ black
 click
 pytest
 pytest-cov
+nest_asyncio
