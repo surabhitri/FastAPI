@@ -11,7 +11,7 @@ app = FastAPI()
 @app.get("/")
 async def root():
     return {
-        "Message": "Please type in your name and predict what you will do after graduating from MIDS"
+        "Message": "Search Twitter!"
     }
 
 
@@ -22,14 +22,20 @@ async def tweet(str1: str):
     c = twint.Config()
     c.Search = [str2]       # topic
     c.Limit = 5      # number of Tweets to scrape
+    c.Lang = "en"
+    #c.Since = "2019–04–29"
+    #c.Until = "2020–04–29"
     # c.Store_csv = True       # store tweets in a csv file
-    #c.Output = "taylor_swift_tweets.csv"     # path to csv file
-    #df = pd.read_csv('taylor_swift_tweets.csv')
+    # c.Output = "/FastAPI/taylor_swift_tweets.csv"     # path to csv file
+    # df = pd.read_csv('/FastAPI/taylor_swift_tweets.csv')
     # print(df)
-    # c.Store_json = True
-    # c.Output = "custom_out.json"
+    c.Store_json = True
+    c.Output = "custom_out.json"
     twint.run.Search(c)
-
-
+    data=pd.read_json("custom_out.json", lines=True)
+    return {"Tweet": data["tweet"] + '\n'}
+    
+    
+    
 if __name__ == "__main__":
     uvicorn.run(app, port=8080, host="0.0.0.0")

@@ -1,5 +1,5 @@
-from main import predict
+from main import tweet
 
 
-def test_predict():
+def test_tweet():
     return 0
