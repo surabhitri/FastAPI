@@ -15,8 +15,8 @@ async def root():
     }
 
 
-@app.get("/twitter/{str1}")
-async def twitter(str1: str):
+@app.get("/tweet/{str1}")
+async def tweet(str1: str):
     str2 = str1.replace("_"," ")
     nest_asyncio.apply()
     c = twint.Config()
